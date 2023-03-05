@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        private String name;
+        private Address address;
+        private String[] hobby;
+        private List friends;
+        private Map card;
+        private Set games;
+        private Properties info;
+    -->
+
+    <!--1.常量注入-->
+    <bean id="name" class="com.ming.pojo.Workman">
+        <property name="name" value="小王"/>
+    </bean>
+
+    <!--2.bean注入-->
+    <bean id="address" class="com.ming.pojo.Address">
+        <property name="address" value="云南"/>
+    </bean>
+
+
+    <bean id="workmanAddress" class="com.ming.pojo.Workman">
+        <property name="address" ref="address"/>
+    </bean>
+    <!--3.数组注入-->
+    <bean id="workmanHobby" class="com.ming.pojo.Workman">
+        <property name="hobby">
+            <array>
+                <value>唱歌</value>
+                <value>吃饭</value>
+                <value>睡觉</value>
+            </array>
+        </property>
+    </bean>
+
+    <!--4.List注入-->
+    <bean id="workmanList" class="com.ming.pojo.Workman">
+        <property name="friends">
+            <list>
+                <value>小张</value>
+                <value>小王</value>
+                <value>小李</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--5.Map注入-->
+    <bean id="workmanMap" class="com.ming.pojo.Workman">
+        <property name="card">
+            <map>
+                <entry key="工商" value="111111"/>
+                <entry key="农行" value="222222"/>
+            </map>
+        </property>
+    </bean>
+
+    <!--6.Set注入-->
+    <bean id="workmanSet" class="com.ming.pojo.Workman">
+        <property name="games">
+            <set>
+                <value>Dota</value>
+                <value>LoL</value>
+            </set>
+        </property>
+    </bean>
+
+    <!--7.配置注入-->
+    <bean id="workmanProperties" class="com.ming.pojo.Workman">
+        <property name="info">
+            <props>
+                <prop key="用户名">张三</prop>
+                <prop key="密码">123123</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--8.空值注入-->
+    <bean id="workmanGoal" class="com.ming.pojo.Workman">
+        <property name="goal">
+            <null></null>
+        </property>
+    </bean>
+</beans>

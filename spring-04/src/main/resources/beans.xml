@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--import导入其他的beans.xml-->
+    <!--<import resource="{path}/beans.xml"/>-->
+
+    <!--构造方法注入：通过index注入-->
+    <bean id="man1" class="com.ming.pojo.Man">
+        <constructor-arg index="0" value="man1"/>
+    </bean>
+    <!--构造方法注入：通过name注入-->
+    <bean id="man2" class="com.ming.pojo.Man">
+        <constructor-arg name="name" value="man2"/>
+    </bean>
+    <!--构造方法注入：通过属性类型注入-->
+    <bean id="man3" class="com.ming.pojo.Man">
+        <constructor-arg type="java.lang.String" value="man3"/>
+    </bean>
+    <!--为bean man1设置别名为man-->
+    <alias name="man1" alias="man"/>
+
+    <!--
+        id 是bean的标识符,要唯一,如果没有配置id,name就是默认标识符
+        如果配置id,又配置了name,那么name是别名
+        name可以设置多个别名,可以用逗号,分号,空格隔开
+        如果不配置id和name,可以根据applicationContext.getBean(.class)获取对象;
+        class是bean的全限定名=包名+类名
+    -->
+
+    <!--此处的class如果没有无参的构造方法就会报错;-->
+    <bean id="man4" name="newman4 man4" class="com.ming.pojo.Man">
+        <property name="name" value="man4"/>
+    </bean>
+
+</beans>

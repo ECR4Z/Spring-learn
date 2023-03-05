@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--注册bean-->
+    <bean id="pointCut" class="com.ming.pointCut.PonitCut"/>
+    <bean id="userService" class="com.ming.userService.UserServiceImpl"/>
+
+    <!--配置aop-->
+    <aop:config>
+        <aop:aspect ref="pointCut">
+            <!--
+                1.*通配符代表任意返回类型
+                2.com.ming.userService.UserServiceImpl
+                3.*表示该类下的所有方法
+                4.(..)表示任意参数个数，类型
+            -->
+            <aop:pointcut id="point" expression="execution(* com.ming.userService.UserServiceImpl.*(..))"/>
+            <aop:before pointcut-ref="point" method="before"/>
+            <aop:after pointcut-ref="point" method="after"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
